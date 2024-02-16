@@ -1,17 +1,27 @@
+name: bentest
 
-name: hello-world
-'on': push
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  my-job:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: my-step
-        run: echo "Hello World!"
-  
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm install
-      - run: npm test
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set Up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Angular App
+      run: npm run build
+
+    
