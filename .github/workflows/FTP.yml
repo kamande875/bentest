@@ -1,4 +1,4 @@
-
+name: Deploy Angular to FTPS
 
 on:
   push:
@@ -6,34 +6,38 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build Angular app
-      run: ng build --prod
+      - name: Build Angular app
+        run: ng build --prod
 
-  upload:
-    needs: build
-    runs-on: ubuntu-latest
+      - name: Set up FTPS
+        uses: lukemnet/curl-ftpfs-action@v1
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          port: ${{ secrets.FTP_PORT }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          remoteDir: ${{ secrets.FTP_REMOTE_DIR }}
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Copy files to FTPS
+        run: |
+          cp -r dist/* /mnt/ftp
+        shell: bash
 
-    - name: Set up FTPS
-      uses: wcomartin/action-ftp-sync@v2
 
        
 
