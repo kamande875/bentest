@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: ng build --prod
+        run: npm i -g @angular/cli
 
       - name: Set up FTPS
         uses: lukemnet/curl-ftpfs-action@v1
