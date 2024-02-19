@@ -11,12 +11,12 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v20
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v20
       with:
-        node-version: 14
+        node-version: 20
 
     - name: Install dependencies
       run: npm install
@@ -30,17 +30,11 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v20
 
     - name: Set up FTPS
-      uses: wcomartin/action-ftp-sync@v3
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        port: ${{ secrets.FTP_PORT }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        remoteDir: ${{ secrets.FTP_REMOTE_DIR }}
-        localDir: dist/ 
+      uses: wcomartin/action-ftp-sync@v20
 
+       
 
       
