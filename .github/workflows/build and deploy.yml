@@ -34,10 +34,4 @@ jobs:
 
       - name: Set up FTPS
         uses: wcomartin/action-ftp-sync@v3
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          port: ${{ 21}}
-          username: ${{bentest }}
-          password: ${{ bentest123@7fkuch90 }}
-          remoteDir: ${{ C:\Program Files\FileZilla Server\Logs\filezilla-server.log }}
-          localDir: dist/ 
+       
