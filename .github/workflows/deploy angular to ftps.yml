@@ -34,10 +34,6 @@ jobs:
         with:
           host: ${{ secrets.FTP_SERVER }}
           port: ${{ 21}}
-          user: ${{ bentest}}
-          password: ${{bentest123@7fkuch90 }}
           localDir: dist/
           remoteDir: ${{ C:\Program Files\FileZilla Server\Logs\filezilla-server.log }}
-          protocol: ftps
-          options: --implicit
-
+         
