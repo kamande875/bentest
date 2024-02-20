@@ -11,29 +11,33 @@ jobs:
 
     steps:
       - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14
 
       - name: Install dependencies
         run: npm install
 
-
+      - name: Build Angular app
+        run: ng build --prod
 
   deploy:
-    needs: build 
+    needs: build
+    runs-on: ubuntu-latest
 
     steps:
       - name: Upload to FTPS
         uses: ncw/ftp@v2
         with:
           host: ${{ secrets.FTP_SERVER }}
-          port: ${{ secrets.FTP_PORT }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ 21}}
+          user: ${{ bentest}}
+          password: ${{bentest123@7fkuch90 }}
           localDir: dist/
-          remoteDir: ${{ secrets.FTP_REMOTE_DIR }}
+          remoteDir: ${{ C:\Program Files\FileZilla Server\Logs\filezilla-server.log }}
           protocol: ftps
           options: --implicit
+
