@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v20
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v20
         with:
-          node-version: 14
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Upload to FTPS
-        uses: ncw/ftp@v2
+        uses: ncw/ftp@v20
         with:
           host: ${{ secrets.FTP_SERVER }}
           port: ${{ secrets.FTP_PORT }}
