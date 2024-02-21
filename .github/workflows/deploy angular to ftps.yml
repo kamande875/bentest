@@ -22,16 +22,4 @@ jobs:
       - name: Build Angular app
         run: ng build
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Upload to FTPS
-        uses: ncw/ftp@v12
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          port: ${{ 21}}
-          localDir: dist/
-          remoteDir: ${{ C:\Program Files\FileZilla Server\Logs\filezilla-server.log }}
-         
+  
