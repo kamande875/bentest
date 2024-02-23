@@ -30,9 +30,7 @@ jobs:
       - name: Upload to Azure Web App via FTPS
         uses: SamKirkland/FTP-Deploy-Action@4.1.1
         with:
-          server: ${{ftps://waws-prod-dxb-007.ftp.azurewebsites.windows.net/site/wwwroot
-
- }}
+          server: ${{ftps://waws-prod-dxb-007.ftp.azurewebsites.windows.net/site/wwwroot }}
           username: ${{ megaclaim__test}}
           password: ${{r51i2GeuirQzjAg4lkKXX2n8wHBNHmud2qm6GAu1LoFR31hAnmdNM0x6eArg }}
           port: ${{ 990}}
