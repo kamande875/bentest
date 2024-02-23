@@ -23,3 +23,7 @@ jobs:
 
     - name: Build Angular App
       run: npm run build
+       - name: Upload to Azure Web App via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@4.1.1
+        with:
+          server: ${{ftps://waws-prod-dxb-007.ftp.azurewebsites.windows.net/site/wwwroot}}
