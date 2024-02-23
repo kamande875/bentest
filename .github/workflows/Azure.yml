@@ -1,0 +1,38 @@
+name: DeploytoAzure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: ng build --prod
+
+      - name: Upload to Azure Web App via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@4.1.1
+        with:
+          server: ${{ftp://bentest.azurewebsites.net}}
+          username: ${{megaclaim__test\$megaclaim__test}}
+          password: ${{r51i2GeuirQzjAg4lkKXX2n8wHBNHmud2qm6GAu1LoFR31hAnmdNM0x6eArg }}
+          port: ${{ 900}}
+          local-dir: dist/
+          remote-dir: site/wwwroot/
